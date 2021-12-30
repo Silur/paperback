@@ -4,21 +4,28 @@
       <div class="col-12">
         <q-card v-ripple @click="beginBackup()">
           <q-card-section class="card-section">
-            <q-icon name="mdi-content-save-all" size="8rem" color="purple"/> <span style="font-size: 4rem;">Backup</span>
+            <q-icon name="mdi-content-save-all" size="8rem" color="purple"/> <span>Backup</span>
           </q-card-section>
         </q-card>
       </div>
       <div class="col-12">
         <q-card v-ripple>
           <q-card-section class="card-section">
-            <q-icon name="mdi-backup-restore" size="8rem" color="purple"/> <span style="font-size: 4rem;">Recover</span>
+            <q-icon name="mdi-backup-restore" size="8rem" color="purple"/> <span>Recover</span>
           </q-card-section>
         </q-card>
       </div>
       <div class="col-12">
         <q-card v-ripple>
           <q-card-section class="card-section">
-            <q-icon name="mdi-arrow-expand-right" size="8rem" color="purple"/> <span style="font-size: 4rem;">Expand</span>
+            <q-icon name="mdi-arrow-expand-right" size="8rem" color="purple"/> <span>Expand</span>
+          </q-card-section>
+        </q-card>
+      </div>
+      <div class="col-12">
+        <q-card v-ripple>
+          <q-card-section class="card-section justify-center full-height">
+              <q-icon name="mdi-help" size="8rem" color="purple"/> <span>Help</span>
           </q-card-section>
         </q-card>
       </div>
@@ -46,6 +53,11 @@ export default {
 <style lang="scss">
 .card-section {
   text-align: center;
+  span {
+    padding-left: 1rem;
+    font-size: 4rem;
+    vertical-align: middle;
+  }
 }
 .q-card {
   margin-bottom: 1rem;
