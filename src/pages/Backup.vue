@@ -71,7 +71,7 @@
             active-icon="mdi-file-download"
             :done="step > 3"
           >
-            TODO
+            <q-btn @click="saveMainDoc()">Print page</q-btn>
           </q-step>
 
           <q-step
@@ -84,8 +84,8 @@
 
           <template v-slot:navigation>
             <q-stepper-navigation>
-              <q-btn @click="$refs.stepper.next()" color="primary" :label="step === 4 ? 'Finish' : 'Continue'" :disable="hasError" />
-              <q-btn v-if="step > 1" flat color="primary" @click="$refs.stepper.previous()" label="Back" class="q-ml-sm" />
+              <q-btn @click="$refs.stepper.next()" color="purple" :label="step === 4 ? 'Finish' : 'Continue'" :disable="hasError" />
+              <q-btn v-if="step > 1" flat color="purple" @click="$refs.stepper.previous()" label="Back" class="q-ml-sm" />
             </q-stepper-navigation>
           </template>
         </q-stepper>
@@ -95,6 +95,8 @@
 </template>
 
 <script>
+import { generatePDF } from '../utils/pdf.js'
+import { generateDocument } from '../utils/crypto.js'
 
 export default {
   name: 'Index',
@@ -124,6 +126,11 @@ export default {
       setTimeout(() => {
         this.$router.push('backup')
       }, 200)
+    },
+    saveMainDoc: async function () {
+      const doc = await generateDocument('main', this.quorumSize, this.shardsThreshold)
+      const pdf = generatePDF(doc)
+      pdf.save('main-document.pdf')
     }
   }
 }
